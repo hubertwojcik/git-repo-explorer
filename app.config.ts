@@ -24,6 +24,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: Env.PACKAGE,
   },
+  web: {
+    bundler: "metro",
+  },
   extra: {
     ...ClientEnv,
   },
