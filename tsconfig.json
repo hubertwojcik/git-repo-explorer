@@ -5,20 +5,11 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
-			"@env": ["./src/client-env.js"]
+			"@env": ["./src/env.js"]
 		},
 		"esModuleInterop": true,
 		"checkJs": true
 	},
-	"exclude": [
-		"node_modules",
-		"babel.config.js",
-		"metro.config.js",
-		"docs",
-		"cli",
-		"android",
-		"ios",
-		"lint-staged.config.js",
-		"ReactotronConfig.js"
-	]
+	"include": ["global.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["babel.config.js", "android", "ios", "metro.config.js", "tailwind.config.js"]
 }
