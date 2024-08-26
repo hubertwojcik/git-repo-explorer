@@ -91,7 +91,7 @@
 			"style": {
 				"all": true,
 				"noShoutyConstants": "warn",
-				"useNamingConvention": "error",
+				"useNamingConvention": "off",
 				"noCommaOperator": "warn",
 				"noImplicitBoolean": "off",
 				"noUselessElse": "off",

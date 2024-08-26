@@ -1,35 +1,39 @@
-import { loadSelectedTheme, useSelectedTheme } from '@/core';
-import { Button } from '@/ui/core';
-import { useEffect } from 'react';
-import { View } from 'react-native';
+import { loadSelectedTheme } from '@/core';
+
+import * as SplashScreen from 'expo-splash-screen';
+
+import { useCallback, useState } from 'react';
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import { APIProvider } from './api';
+import { ThemeProvider } from './core/contexts/theme.context';
+import { RootNavigator } from './navigation/root-navigation';
+
+SplashScreen.preventAutoHideAsync();
 
 loadSelectedTheme();
 
 export function App() {
-	useEffect(() => {
-		loadSelectedTheme();
-	}, []);
+	const [appIsReady] = useState(true);
 
-	const { setSelectedTheme } = useSelectedTheme();
+	const onLayoutRootView = useCallback(async () => {
+		if (appIsReady) {
+			await SplashScreen.hideAsync();
+		}
+	}, [appIsReady]);
+
+	if (!appIsReady) {
+		return null;
+	}
+
 	return (
-		<GestureHandlerRootView style={{ flex: 1 }}>
-			<View className="bg-red-200 dark:bg-red-800 flex-1 items-center justify-center">
-				<Button
-					label="DARK"
-					variant="destructive"
-					onPress={() => {
-						setSelectedTheme('dark');
-					}}
-				/>
-				<Button
-					label="LIGHT"
-					variant="destructive"
-					onPress={() => {
-						setSelectedTheme('light');
-					}}
-				/>
-			</View>
+		<GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+			<ThemeProvider>
+				<APIProvider>
+					<RootNavigator />
+				</APIProvider>
+			</ThemeProvider>
 		</GestureHandlerRootView>
 	);
 }

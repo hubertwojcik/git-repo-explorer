@@ -23,7 +23,6 @@ export const useSelectedTheme = () => {
 	const setSelectedTheme = React.useCallback(async (t: ColorSchemeType) => {
 		try {
 			colorScheme.set(t);
-
 			setTheme(t);
 			await setItem(SELECTED_THEME, t);
 		} catch (error) {
