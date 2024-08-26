@@ -29,3 +29,15 @@ To run this project locally, follow these steps:
    git clone https://github.com/yourusername/github-finder-app.git
    cd github-finder-app
    ```
+
+2. **Install dependencies:**
+
+   ```
+       npm install
+   ```
+
+3. **Run the app:**
+   This will start the Expo development server. You can scan the QR code with the Expo Go app on your mobile device to run the app.
+   ```
+       npx expo start
+   ```
